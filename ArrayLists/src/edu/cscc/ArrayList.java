@@ -88,7 +88,7 @@ public class ArrayList<E> {
      * @param data
      */
     public void add(int index, E data){
-        if (index < 0 || index > size || index > size + 1) {
+        if (index < 0 || index > size()) {
             throw new IndexOutOfBoundsException("The index is out of bounds. Index: " + index);
         }
         else {

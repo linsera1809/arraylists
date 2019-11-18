@@ -65,23 +65,53 @@ public final class ArrayListTest {
         assertEquals("Object added at the index and cleared", true, aList0.isEmpty());
     }
 
+    //Failing
     @Test
     public void add() {
-    }
+        ArrayList list = new ArrayList();
+        Object o = "Hello";
 
-    @Test
-    public void add1() {
+        list.add(o);
+        assertEquals("Object added", false, list.isEmpty());
+
+        aList0.add(2, o);
+        assertEquals("Object added", false, aList0.isEmpty());
+
     }
 
     @Test
     public void get() {
+        ArrayList list = new ArrayList();
+
+        Object o = "Hello";
+        list.add(0, o);
+        aList0.add(0, o);
+        Object n = list.get(0);
+        Object m = aList0.get(0);
+
+        assertEquals("Added object is not empty",false, list.isEmpty());
+        assertEquals("Retrieved object is equal",true, n.equals(o));
+        assertEquals("Added object is not empty",false, aList0.isEmpty());
+        assertEquals("Retrieved object is equal",true, m.equals(o));
     }
 
     @Test
     public void remove() {
-    }
+        ArrayList list = new ArrayList();
 
-    @Test
-    public void remove1() {
+        String o = "Hello";
+        list.add(0, o);
+        aList0.add(0, o);
+
+        assertEquals("Added object is not empty",false, list.isEmpty());
+        assertEquals("Added object is not empty",false, aList0.isEmpty());
+
+        list.remove(0);
+        aList0.remove(o);
+
+        assertEquals("Object is empty after removing",true, list.isEmpty());
+        assertEquals("Object is empty after removing",true, aList0.isEmpty());
+
+
     }
 }
