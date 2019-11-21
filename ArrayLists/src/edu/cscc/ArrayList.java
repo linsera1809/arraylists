@@ -1,11 +1,9 @@
 package edu.cscc;
 
-import java.util.Arrays;
-
 /**
  * @author Bobby Linse
  * Date: November 2019
- * Instructor: David Paulzer
+ * Instructor: David Palzer
  * School: Columbus State Community College
  * Assignment: Lab #1
  *
@@ -16,10 +14,10 @@ import java.util.Arrays;
 
 public class ArrayList<E> {
 
-    private E[] elements; // list of values
+    private Object[] elements; // list of values
     private int size;
 
-    public static final int DEFAULT_SIZE = 50;
+    public static final int DEFAULT_SIZE = 10;
 
     /**
      * Given a null Array, instantiate an arraylist of Default Size
@@ -29,14 +27,14 @@ public class ArrayList<E> {
     }
 
     /**
-     * Given some size, an edu.cscc.ArrayList will be instantiated
+     * Given some size, an ArrayList will be instantiated
      * @param arrSize
      */
     public ArrayList(int arrSize) {
         if (arrSize < 0) {
             throw new IllegalArgumentException("Array Size is less than zero. Size: " + arrSize);
         }
-        elements = (E[]) new Object[arrSize];
+        elements = new Object[arrSize];
         size = elements.length;
     }
 
@@ -72,14 +70,23 @@ public class ArrayList<E> {
      */
     public void add(E data) {
         if (size < elements.length) {
-            elements[size] = data;
+            elements[size-1] = data;
         }
 
         else {
-            size = size +1; //Allocate more space
+            resize();
             elements[size] = data;
         }
         size++;
+    }
+
+    /**
+     * Utility function used to allocate more space
+     */
+    private void resize(){
+        int resize = size*2;
+        Object[] newE = new Object[resize];
+        elements = newE;
     }
 
     /**
@@ -87,12 +94,12 @@ public class ArrayList<E> {
      * @param index
      * @param data
      */
-    public void add(int index, E data){
+    public void add(int index, E data) {
         if (index < 0 || index > size()) {
             throw new IndexOutOfBoundsException("The index is out of bounds. Index: " + index);
         }
         else {
-            for (int i = size; i >= index + 1; i--) {
+            for (int i = size; i >= index; i--) {
                 elements[i] = elements[i - 1];
             }
             elements[index] = data;
@@ -145,7 +152,7 @@ public class ArrayList<E> {
                 elements[i] = elements[i + 1];
             }
 
-            E dataToBeRemoved = elements[size - 1];
+            E dataToBeRemoved = (E) elements[size - 1];
             elements[size - 1] = null;
             size--;
             return dataToBeRemoved;

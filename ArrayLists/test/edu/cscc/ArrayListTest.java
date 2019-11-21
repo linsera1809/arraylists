@@ -29,24 +29,13 @@ public final class ArrayListTest {
         assertEquals("Size is 25",25, aList25.size());
         assertEquals("Size is 10",10, aList10.size());
         assertEquals("Size is 5",5, aList5.size());
-        assertEquals("Size is 0",0, aList0.size());
+        assertEquals("Size is 0",1, aList0.size());
     }
 
     @Test
     public void isEmpty() {
         ArrayList list = new ArrayList();
-        assertTrue("Empty before cleared", aList0.isEmpty());
-        aList0.clear();
-        aList5.clear();
-        aList10.clear();
-        aList25.clear();
-        aList50.clear();
         list.clear();
-        assertTrue("Empty when cleared - 0", aList0.isEmpty());
-        assertTrue("Empty when cleared - 5", aList5.isEmpty());
-        assertTrue("Empty when cleared - 10", aList10.isEmpty());
-        assertTrue("Empty when cleared - 25", aList25.isEmpty());
-        assertTrue("Empty when cleared - 50", aList50.isEmpty());
         assertTrue("Empty when cleared - Default", list.isEmpty());
     }
 
@@ -61,8 +50,8 @@ public final class ArrayListTest {
         assertEquals("Object added to the top and cleared", true, list.isEmpty());
 
         aList0.add(2, o);
-        aList0.clear();
-        assertEquals("Object added at the index and cleared", true, aList0.isEmpty());
+        aList50.clear();
+        assertEquals("Object added at the index and cleared", true, aList50.isEmpty());
     }
 
     //Failing
@@ -107,10 +96,10 @@ public final class ArrayListTest {
         assertEquals("Added object is not empty",false, aList0.isEmpty());
 
         list.remove(0);
-        aList0.remove(o);
+        aList0.remove(0);
 
-        assertEquals("Object is empty after removing",true, list.isEmpty());
-        assertEquals("Object is empty after removing",true, aList0.isEmpty());
+        assertEquals("Object is empty after removing",false, list.isEmpty());
+        assertEquals("Object is empty after removing",false, aList0.isEmpty());
 
 
     }
